@@ -5,8 +5,7 @@ import java.util.ArrayList;
 public class Quiz {
    private ArrayList<String> questions;
 
-   public void Quiz() {
-       this.questions = questions;
+   public Quiz() {
    }
 
     public ArrayList<String> getQuestions() {
