@@ -1,27 +1,40 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class Quiz {
-   private ArrayList<String> questions;
+   private List<Question> questions;
 
-   public void Quiz() {
-       this.questions = questions;
+   public Quiz() {
+       questions = new ArrayList<>();
    }
 
-    public ArrayList<String> getQuestions() {
-        return questions;
-    }
+   public void addQuestion(Question question) {
+       questions.add(question);
+   }
 
-    public void setQuestions(ArrayList<String> questions) {
-        this.questions = questions;
-    }
+   public void runQuiz() {
+       Scanner scanner = new Scanner(System.in);
+       int score = 0;
 
-    public void runQuiz() {
+       for (Question question : questions) {
+            question.displayQuestion();
+            question.displayOptions();
 
-    }
+            List<String> userAnswers = new ArrayList<>();
+            String input = scanner.nextLine();
+            userAnswers.add(input); // Collect user's answer(s)
 
-    public void gradeQuiz() {
+           if (question.checkAnswer(userAnswers)) {
+                System.out.println("Correct!");
+                score++;
+           } else {
+                System.out.println("Incorrect.");
+           }
+        }
 
+        System.out.println("Your score: " + score + "/" + questions.size());
     }
 }
